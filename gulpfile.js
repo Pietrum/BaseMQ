@@ -1,0 +1,41 @@
+var gulp = require('gulp');
+var plugins = require('gulp-load-plugins')();
+var path = require('path');
+
+var PATH = {
+  library: 'lib',
+  test: 'test'
+};
+var TESTS = [
+  path.join('.', PATH.test, '**', '*.spec.js')
+];
+var FILES = [
+  path.join('.', 'index.js'),
+  path.join('.', PATH.library, 'basemq.js'),
+  path.join('.', PATH.library, 'enum', 'connection.js'),
+  path.join('.', PATH.library, 'enum', 'heartbeating.js'),
+  path.join('.', PATH.library, 'enum', 'pattern.js'),
+  path.join('.', PATH.library, 'type', 'broker.js'),
+  path.join('.', PATH.library, 'type', 'client.js'),
+  path.join('.', PATH.library, 'type', 'worker.js')
+].concat(TESTS);
+
+gulp.task('jscs', function () {
+  return gulp.src(FILES)
+    .pipe(plugins.jscs());
+});
+
+gulp.task('jshint', ['jscs'], function () {
+  return gulp.src(FILES)
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('develop', ['jshint'], function() {
+  gulp.watch(FILES, ['jshint']);
+});
+
+gulp.task('test', function() {
+  return gulp.src(TESTS, {read: false})
+    .pipe(plugins.mocha({reporter: 'spec'}));
+});
