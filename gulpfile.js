@@ -7,7 +7,8 @@ var PATH = {
   test: 'test'
 };
 var TESTS = [
-  path.join('.', PATH.test, '**', '*.spec.js')
+  path.join('.', PATH.test, 'basemq.spec.js'),
+  path.join('.', PATH.test, 'enum.spec.js')
 ];
 var FILES = [
   path.join('.', 'index.js'),
@@ -33,9 +34,10 @@ gulp.task('jshint', ['jscs'], function () {
 
 gulp.task('develop', ['jshint'], function() {
   gulp.watch(FILES, ['jshint']);
+  gulp.watch(TESTS, ['test']);
 });
 
-gulp.task('test', function() {
+gulp.task('test', ['jshint'], function() {
   return gulp.src(TESTS, {read: false})
     .pipe(plugins.mocha({reporter: 'spec'}));
 });

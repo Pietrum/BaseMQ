@@ -6,7 +6,7 @@
 var expect = require('chai').expect;
 var bmq = require('../');
 
-describe('[Expose]', function() {
+describe('[BaseMQ]', function() {
   it('should expose as object', function() {
     expect(bmq).to.be.a('object');
   });
