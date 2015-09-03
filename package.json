@@ -1,0 +1,32 @@
+{
+  "name": "basemq",
+  "version": "0.1.0",
+  "description": "Node.js Microservices Architecture framework based on ZeroMQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Pietrum/BaseMQ.git"
+  },
+  "author": "Fulkman <fulkman@pietrum.pl> (http://www.pietrum.pl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Pietrum/BaseMQ/issues"
+  },
+  "homepage": "https://github.com/Pietrum/BaseMQ#readme",
+  "dependencies": {
+    "util": "^0.10.3",
+    "zmq": "^2.12.0"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "gulp": "^3.9.0",
+    "gulp-jscs": "^2.0.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-mocha": "^2.1.3",
+    "jshint-stylish": "^2.0.1"
+  }
+}
