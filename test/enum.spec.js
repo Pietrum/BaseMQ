@@ -18,14 +18,14 @@ describe('[Connection]', function() {
   });
 });
 
-describe('[Heartbeating]', function() {
+describe('[Heartbeat]', function() {
   it('should have two-way declaration', function() {
-    var value = bmq.Heartbeating[0];
-    expect(bmq.Heartbeating[value]).to.be.equal(0);
+    var value = bmq.Heartbeat[0];
+    expect(bmq.Heartbeat[value]).to.be.equal(0);
   });
 
   it('should have a even number of elements', function() {
-    var size = Object.keys(bmq.Heartbeating).length;
+    var size = Object.keys(bmq.Heartbeat).length;
     expect(size % 2).to.be.equal(0);
   });
 });

@@ -11,7 +11,7 @@ var BaseMQ = module.exports = {};
  * @api public
  */
 BaseMQ.Connection = require('./lib/enum/connection');
-BaseMQ.Heartbeating = require('./lib/enum/heartbeating');
+BaseMQ.Heartbeat = require('./lib/enum/heartbeat');
 BaseMQ.Pattern = require('./lib/enum/pattern');
 
 /**

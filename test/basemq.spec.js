@@ -15,8 +15,8 @@ describe('[BaseMQ]', function() {
     expect(bmq.Connection).to.be.a('object');
   });
 
-  it('should expose a Heartbeating enum', function() {
-    expect(bmq.Heartbeating).to.be.a('object');
+  it('should expose a Heartbeat enum', function() {
+    expect(bmq.Heartbeat).to.be.a('object');
   });
 
   it('should expose a Pattern enum', function() {

@@ -14,7 +14,7 @@ var FILES = [
   path.join('.', 'index.js'),
   path.join('.', PATH.library, 'basemq.js'),
   path.join('.', PATH.library, 'enum', 'connection.js'),
-  path.join('.', PATH.library, 'enum', 'heartbeating.js'),
+  path.join('.', PATH.library, 'enum', 'heartbeat.js'),
   path.join('.', PATH.library, 'enum', 'pattern.js'),
   path.join('.', PATH.library, 'type', 'broker.js'),
   path.join('.', PATH.library, 'type', 'client.js'),
