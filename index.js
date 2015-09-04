@@ -15,10 +15,10 @@ BaseMQ.Heartbeat = require('./lib/enum/heartbeat');
 BaseMQ.Pattern = require('./lib/enum/pattern');
 
 /**
- * Types.
+ * Roles.
  *
  * @api public
  */
-BaseMQ.Broker = require('./lib/type/broker');
-BaseMQ.Client = require('./lib/type/client');
-BaseMQ.Worker = require('./lib/type/worker');
+BaseMQ.Broker = require('./lib/role/broker');
+BaseMQ.Client = require('./lib/role/client');
+BaseMQ.Worker = require('./lib/role/worker');

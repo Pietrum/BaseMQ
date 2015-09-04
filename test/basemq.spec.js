@@ -23,15 +23,15 @@ describe('[BaseMQ]', function() {
     expect(bmq.Pattern).to.be.a('object');
   });
 
-  it('should expose a Client type', function() {
+  it('should expose a Client role', function() {
     expect(bmq.Client).to.be.a('function');
   });
 
-  it('should expose a Broker type', function() {
+  it('should expose a Broker role', function() {
     expect(bmq.Broker).to.be.a('function');
   });
 
-  it('should expose a Worker type', function() {
+  it('should expose a Worker role', function() {
     expect(bmq.Worker).to.be.a('function');
   });
 });
