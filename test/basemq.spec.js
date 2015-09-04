@@ -23,6 +23,10 @@ describe('[BaseMQ]', function() {
     expect(bmq.Pattern).to.be.a('object');
   });
 
+  it('should expose a Socket enum', function() {
+    expect(bmq.Socket).to.be.a('object');
+  });
+
   it('should expose a Client role', function() {
     expect(bmq.Client).to.be.a('function');
   });

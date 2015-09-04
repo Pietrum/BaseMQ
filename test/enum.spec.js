@@ -41,3 +41,15 @@ describe('[Pattern]', function() {
     expect(size % 2).to.be.equal(0);
   });
 });
+
+describe('[Socket]', function() {
+  it('should have two-way declaration', function() {
+    var value = bmq.Socket[0];
+    expect(bmq.Socket[value]).to.be.equal(0);
+  });
+
+  it('should have a even number of elements', function() {
+    var size = Object.keys(bmq.Socket).length;
+    expect(size % 2).to.be.equal(0);
+  });
+});

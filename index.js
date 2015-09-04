@@ -13,6 +13,7 @@ var BaseMQ = module.exports = {};
 BaseMQ.Connection = require('./lib/enum/connection');
 BaseMQ.Heartbeat = require('./lib/enum/heartbeat');
 BaseMQ.Pattern = require('./lib/enum/pattern');
+BaseMQ.Socket = require('./lib/enum/socket');
 
 /**
  * Roles.

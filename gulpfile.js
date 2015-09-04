@@ -16,6 +16,7 @@ var FILES = [
   path.join('.', PATH.library, 'enum', 'connection.js'),
   path.join('.', PATH.library, 'enum', 'heartbeat.js'),
   path.join('.', PATH.library, 'enum', 'pattern.js'),
+  path.join('.', PATH.library, 'enum', 'socket.js'),
   path.join('.', PATH.library, 'role', 'broker.js'),
   path.join('.', PATH.library, 'role', 'client.js'),
   path.join('.', PATH.library, 'role', 'worker.js')
