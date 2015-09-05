@@ -19,12 +19,12 @@ describe('[BaseMQ]', function() {
     expect(bmq.Heartbeat).to.be.a('object');
   });
 
-  it('should expose a Pattern enum', function() {
-    expect(bmq.Pattern).to.be.a('object');
+  it('should expose a LoadBalancer enum', function() {
+    expect(bmq.LoadBalancer).to.be.a('object');
   });
 
-  it('should expose a Socket enum', function() {
-    expect(bmq.Socket).to.be.a('object');
+  it('should expose a Module enum', function() {
+    expect(bmq.Module).to.be.a('object');
   });
 
   it('should expose a Client role', function() {

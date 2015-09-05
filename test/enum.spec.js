@@ -30,26 +30,26 @@ describe('[Heartbeat]', function() {
   });
 });
 
-describe('[Pattern]', function() {
+describe('[LoadBalancer]', function() {
   it('should have two-way declaration', function() {
-    var value = bmq.Pattern[0];
-    expect(bmq.Pattern[value]).to.be.equal(0);
+    var value = bmq.LoadBalancer[0];
+    expect(bmq.LoadBalancer[value]).to.be.equal(0);
   });
 
   it('should have a even number of elements', function() {
-    var size = Object.keys(bmq.Pattern).length;
+    var size = Object.keys(bmq.LoadBalancer).length;
     expect(size % 2).to.be.equal(0);
   });
 });
 
-describe('[Socket]', function() {
+describe('[Module]', function() {
   it('should have two-way declaration', function() {
-    var value = bmq.Socket[0];
-    expect(bmq.Socket[value]).to.be.equal(0);
+    var value = bmq.Module[0];
+    expect(bmq.Module[value]).to.be.equal(0);
   });
 
   it('should have a even number of elements', function() {
-    var size = Object.keys(bmq.Socket).length;
+    var size = Object.keys(bmq.Module).length;
     expect(size % 2).to.be.equal(0);
   });
 });

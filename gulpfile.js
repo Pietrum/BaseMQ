@@ -3,6 +3,7 @@ var plugins = require('gulp-load-plugins')();
 var path = require('path');
 
 var PATH = {
+  example: 'examples',
   library: 'lib',
   test: 'test'
 };
@@ -11,15 +12,20 @@ var TESTS = [
   path.join('.', PATH.test, 'enum.spec.js')
 ];
 var FILES = [
+  // lib
   path.join('.', 'index.js'),
   path.join('.', PATH.library, 'basemq.js'),
   path.join('.', PATH.library, 'enum', 'connection.js'),
   path.join('.', PATH.library, 'enum', 'heartbeat.js'),
-  path.join('.', PATH.library, 'enum', 'pattern.js'),
-  path.join('.', PATH.library, 'enum', 'socket.js'),
+  path.join('.', PATH.library, 'enum', 'loadbalancer.js'),
+  path.join('.', PATH.library, 'enum', 'module.js'),
   path.join('.', PATH.library, 'role', 'broker.js'),
   path.join('.', PATH.library, 'role', 'client.js'),
-  path.join('.', PATH.library, 'role', 'worker.js')
+  path.join('.', PATH.library, 'role', 'worker.js'),
+  // examples
+  path.join('.', PATH.example, 'basic', 'client.js'),
+  path.join('.', PATH.example, 'basic', 'broker.js'),
+  path.join('.', PATH.example, 'basic', 'worker.js')
 ].concat(TESTS);
 
 gulp.task('jscs', function () {
