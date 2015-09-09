@@ -18,14 +18,6 @@ client.use(bmq.Module.CONNECTION, {
 });
 
 /**
- * Using default `Heartbeat` approach.
- * No need to define the following block.
- */
-client.use(bmq.Module.HEARTBEAT, {
-  approach: bmq.Heartbeat.OFF
-});
-
-/**
  * Initialize.
  */
 client.init();

@@ -14,15 +14,7 @@ var worker = new bmq.Worker();
  */
 worker.use(bmq.Module.CONNECTION, {
   approach: bmq.Connection.REP,     // dealer
-  address: 'tcp://127.0.0.1:12346'  // connect
-});
-
-/**
- * Using default `Heartbeat` approach.
- * No need to define the following block.
- */
-worker.use(bmq.Module.HEARTBEAT, {
-  approach: bmq.Heartbeat.OFF
+  address: 'tcp://127.0.0.1:12345'  // connect
 });
 
 /**

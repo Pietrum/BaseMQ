@@ -15,10 +15,14 @@ var FILES = [
   // lib
   path.join('.', 'index.js'),
   path.join('.', PATH.library, 'basemq.js'),
+  // enum
   path.join('.', PATH.library, 'enum', 'connection.js'),
   path.join('.', PATH.library, 'enum', 'heartbeat.js'),
   path.join('.', PATH.library, 'enum', 'loadbalancer.js'),
   path.join('.', PATH.library, 'enum', 'module.js'),
+  // module
+  path.join('.', PATH.library, 'module', 'connection.js'),
+  // role
   path.join('.', PATH.library, 'role', 'broker.js'),
   path.join('.', PATH.library, 'role', 'client.js'),
   path.join('.', PATH.library, 'role', 'worker.js'),
