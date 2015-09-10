@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Pietrum/BaseMQ#readme",
   "dependencies": {
     "lodash": "^3.10.1",
+    "q": "^1.4.1",
     "util": "^0.10.3",
     "zmq": "^2.12.0"
   },
