@@ -29,4 +29,6 @@ broker.use(bmq.Module.HEARTBEAT, null, {
 /**
  * Initialize.
  */
-broker.init();
+broker.initialize().then(function(opts) {
+  console.log('initialized', opts);
+});

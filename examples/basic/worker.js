@@ -21,4 +21,7 @@ worker.use(bmq.Module.CONNECTION, {
 /**
  * Initialize.
  */
-worker.init();
+worker.initialize().then(function(opts) {
+  console.log('initialized', opts);
+});
+

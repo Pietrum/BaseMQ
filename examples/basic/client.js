@@ -21,6 +21,6 @@ client.use(bmq.Module.CONNECTION, {
 /**
  * Initialize.
  */
-client.init().then(function(opts) {
+client.initialize().then(function(opts) {
   console.log('initialized', opts);
 });
