@@ -30,7 +30,13 @@ var FILES = [
   // examples
   path.join('.', PATH.example, 'basic', 'client.js'),
   path.join('.', PATH.example, 'basic', 'broker.js'),
-  path.join('.', PATH.example, 'basic', 'worker.js')
+  path.join('.', PATH.example, 'basic', 'worker.js'),
+  path.join('.', PATH.example, 'zeromq', 'dealer_dealer.js'),
+  path.join('.', PATH.example, 'zeromq', 'dealer_rep.js'),
+  path.join('.', PATH.example, 'zeromq', 'dealer_router.js'),
+  path.join('.', PATH.example, 'zeromq', 'req_rep.js'),
+  path.join('.', PATH.example, 'zeromq', 'req_router.js'),
+  path.join('.', PATH.example, 'zeromq', 'router_router.js')
 ].concat(TESTS);
 
 gulp.task('jscs', function () {
