@@ -13,8 +13,9 @@ var broker = new bmq.Broker();
  * No need to define the following block.
  */
 broker.use(bmq.Module.CONNECTION, {
-  approach: bmq.Connection.REP,     // router
-  address: 'tcp://127.0.0.1:12345'  // bind
+  approach: bmq.Connection.REP, // router
+  socket: bmq.Connection.BIND,  // bind
+  address: 'tcp://127.0.0.1:12345'
 });
 
 /**

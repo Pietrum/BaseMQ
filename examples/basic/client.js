@@ -13,8 +13,9 @@ var client = new bmq.Client();
  * No need to define the following block.
  */
 client.use(bmq.Module.CONNECTION, {
-  approach: bmq.Connection.REQ,     // dealer
-  address: 'tcp://127.0.0.1:12345'  // connect
+  approach: bmq.Connection.REQ,   // dealer
+  socket: bmq.Connection.CONNECT, // connect
+  address: 'tcp://127.0.0.1:12345'
 });
 
 /**
