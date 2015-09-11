@@ -6,7 +6,7 @@
 var expect = require('chai').expect;
 var bmq = require('../');
 
-describe('[Connection]', function() {
+describe('[Enum Connection]', function() {
   it('should have two-way declaration', function() {
     var value = bmq.Connection[0];
     expect(bmq.Connection[value]).to.be.equal(0);
@@ -18,7 +18,7 @@ describe('[Connection]', function() {
   });
 });
 
-describe('[Heartbeat]', function() {
+describe('[Enum Heartbeat]', function() {
   it('should have two-way declaration', function() {
     var value = bmq.Heartbeat[0];
     expect(bmq.Heartbeat[value]).to.be.equal(0);
@@ -30,7 +30,7 @@ describe('[Heartbeat]', function() {
   });
 });
 
-describe('[LoadBalancer]', function() {
+describe('[Enum LoadBalancer]', function() {
   it('should have two-way declaration', function() {
     var value = bmq.LoadBalancer[0];
     expect(bmq.LoadBalancer[value]).to.be.equal(0);
@@ -42,7 +42,7 @@ describe('[LoadBalancer]', function() {
   });
 });
 
-describe('[Module]', function() {
+describe('[Enum Module]', function() {
   it('should have two-way declaration', function() {
     var value = bmq.Module[0];
     expect(bmq.Module[value]).to.be.equal(0);
