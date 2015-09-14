@@ -27,7 +27,7 @@ describe('[Role Client]', function() {
     expect(client.constructor.name).to.eq('Client');
   });
 
-  describe('exposed methods', function() {
+  describe('methods', function() {
     it('should have initialize method', function() {
       expect(client.initialize).to.be.a('function');
     });
@@ -43,9 +43,13 @@ describe('[Role Client]', function() {
     it('should have on method', function() {
       expect(client.on).to.be.a('function');
     });
+
+    it('should have send method', function() {
+      expect(client.send).to.be.a('function');
+    });
   });
 
-  describe('after initialize', function() {
+  describe('initialize', function() {
     it('should be fulfilled', function() {
       return expect(client.initialize()).to.be.fulfilled;
     });
@@ -76,7 +80,7 @@ describe('[Role Broker]', function() {
     expect(broker.constructor.name).to.eq('Broker');
   });
 
-  describe('exposed methods', function() {
+  describe('methods', function() {
     it('should have initialize method', function() {
       expect(broker.initialize).to.be.a('function');
     });
@@ -92,9 +96,13 @@ describe('[Role Broker]', function() {
     it('should have on method', function() {
       expect(broker.on).to.be.a('function');
     });
+
+    it('should have send method', function() {
+      expect(broker.send).to.be.a('function');
+    });
   });
 
-  describe('after initialize ', function() {
+  describe('initialize ', function() {
     it('should be fulfilled', function() {
       return expect(broker.initialize()).to.be.fulfilled;
     });
@@ -125,7 +133,7 @@ describe('[Role Worker]', function() {
     expect(worker.constructor.name).to.eq('Worker');
   });
 
-  describe('exposed methods', function() {
+  describe('methods', function() {
     it('should have initialize method', function() {
       expect(worker.initialize).to.be.a('function');
     });
@@ -141,9 +149,13 @@ describe('[Role Worker]', function() {
     it('should have on method', function() {
       expect(worker.on).to.be.a('function');
     });
+
+    it('should have send method', function() {
+      expect(worker.send).to.be.a('function');
+    });
   });
 
-  describe('after initialize', function() {
+  describe('initialize', function() {
     it('should be fulfilled', function() {
       return expect(worker.initialize()).to.be.fulfilled;
     });
