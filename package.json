@@ -1,6 +1,6 @@
 {
   "name": "basemq",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Node.js Microservices Architecture framework based on ZeroMQ",
   "main": "index.js",
   "scripts": {
