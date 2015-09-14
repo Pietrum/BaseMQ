@@ -11,7 +11,8 @@ var TESTS = [
   path.join('.', PATH.test, 'basemq.spec.js'),
   path.join('.', PATH.test, 'enum.spec.js'),
   path.join('.', PATH.test, 'role.spec.js'),
-  path.join('.', PATH.test, 'reqrep.spec.js')
+  path.join('.', PATH.test, 'reqrep.spec.js'),
+  path.join('.', PATH.test, 'send.spec.js')
 ];
 var FILES = [
   // lib
