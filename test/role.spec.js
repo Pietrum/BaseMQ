@@ -102,7 +102,7 @@ describe('[Role Broker]', function() {
     });
   });
 
-  describe('initialize ', function() {
+  describe('initialize', function() {
     it('should be fulfilled', function() {
       return expect(broker.initialize()).to.be.fulfilled;
     });
