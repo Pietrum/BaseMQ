@@ -16,6 +16,18 @@
     "url": "https://github.com/Pietrum/BaseMQ/issues"
   },
   "homepage": "https://github.com/Pietrum/BaseMQ#readme",
+  "keywords": [
+    "basemq",
+    "nodejs",
+    "zmq",
+    "zeromq",
+    "0mq",
+    "socket",
+    "request-reply",
+    "pub-sub",
+    "mdp",
+    "microservices"
+  ],
   "dependencies": {
     "lodash": "^3.10.1",
     "node-uuid": "^1.4.3",
