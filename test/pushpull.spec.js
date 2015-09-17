@@ -11,7 +11,7 @@ chai.use(chaiAsPromised);
 var expect = require('chai').expect;
 var bmq = require('../');
 
-describe.only('[Push - Pull]', function() {
+describe('[Push - Pull]', function() {
   var client;
   var worker;
 
