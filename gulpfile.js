@@ -13,6 +13,7 @@ var TESTS = [
   path.join('.', PATH.test, 'role.spec.js'),
   path.join('.', PATH.test, 'reqrep.spec.js'),
   path.join('.', PATH.test, 'pushpull.spec.js'),
+  path.join('.', PATH.test, 'pubsub.spec.js'),
   path.join('.', PATH.test, 'send.spec.js')
 ];
 var FILES = [
