@@ -58,7 +58,7 @@ describe('[Role Client]', function() {
       return expect(client.initialize()).to.become({
         approach: bmq.Connection.REQ,
         socket: bmq.Connection.CONNECT,
-        address: 'tcp://127.0.0.1:12345'
+        endpoint: 'tcp://127.0.0.1:12345'
       });
     });
   });
@@ -111,7 +111,7 @@ describe('[Role Broker]', function() {
       return expect(broker.initialize()).to.become({
         approach: bmq.Connection.REP,
         socket: bmq.Connection.BIND,
-        address: 'tcp://127.0.0.1:12345'
+        endpoint: 'tcp://127.0.0.1:12345'
       });
     });
   });
@@ -164,7 +164,7 @@ describe('[Role Worker]', function() {
       return expect(worker.initialize()).to.become({
         approach: bmq.Connection.REQ,
         socket: bmq.Connection.CONNECT,
-        address: 'tcp://127.0.0.1:12345'
+        endpoint: 'tcp://127.0.0.1:12345'
       });
     });
   });

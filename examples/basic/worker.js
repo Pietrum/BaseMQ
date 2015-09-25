@@ -15,7 +15,7 @@ var worker = new bmq.Worker();
 worker.use(bmq.Module.CONNECTION, {
   approach: bmq.Connection.REQ,   // dealer
   socket: bmq.Connection.CONNECT, // connect
-  address: 'tcp://127.0.0.1:12345'
+  endpoint: 'tcp://127.0.0.1:12345'
 });
 
 /**

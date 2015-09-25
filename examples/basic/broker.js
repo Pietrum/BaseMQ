@@ -15,7 +15,7 @@ var broker = new bmq.Broker();
 broker.use(bmq.Module.CONNECTION, {
   approach: bmq.Connection.REP, // router
   socket: bmq.Connection.BIND,  // bind
-  address: 'tcp://127.0.0.1:12345'
+  endpoint: 'tcp://127.0.0.1:12345'
 });
 
 /**
