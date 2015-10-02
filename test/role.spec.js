@@ -50,12 +50,10 @@ describe('[Role Client]', function() {
   });
 
   describe('initialize', function() {
-    it('should be fulfilled', function() {
-      return expect(client.initialize()).to.be.fulfilled;
-    });
-
     it('should have defined default configuration', function() {
-      return expect(client.initialize()).to.become({
+      client.initialize();
+
+      expect(client.configs[bmq.Module.CONNECTION]).to.deep.eq({
         approach: bmq.Connection.REQ,
         socket: bmq.Connection.CONNECT,
         endpoint: 'tcp://127.0.0.1:12345'
@@ -103,12 +101,10 @@ describe('[Role Broker]', function() {
   });
 
   describe('initialize', function() {
-    it('should be fulfilled', function() {
-      return expect(broker.initialize()).to.be.fulfilled;
-    });
-
     it('should have defined default configuration', function() {
-      return expect(broker.initialize()).to.become({
+      broker.initialize();
+
+      expect(broker.configs[bmq.Module.CONNECTION]).to.deep.eq({
         approach: bmq.Connection.REP,
         socket: bmq.Connection.BIND,
         endpoint: 'tcp://127.0.0.1:12345'
@@ -156,12 +152,10 @@ describe('[Role Worker]', function() {
   });
 
   describe('initialize', function() {
-    it('should be fulfilled', function() {
-      return expect(worker.initialize()).to.be.fulfilled;
-    });
-
     it('should have defined default configuration', function() {
-      return expect(worker.initialize()).to.become({
+      worker.initialize();
+
+      expect(worker.configs[bmq.Module.CONNECTION]).to.deep.eq({
         approach: bmq.Connection.REQ,
         socket: bmq.Connection.CONNECT,
         endpoint: 'tcp://127.0.0.1:12345'
