@@ -23,7 +23,7 @@ var FILES = [
   // enum
   path.join('.', PATH.library, 'enum', 'connection.js'),
   path.join('.', PATH.library, 'enum', 'heartbeat.js'),
-  path.join('.', PATH.library, 'enum', 'loadbalancer.js'),
+  path.join('.', PATH.library, 'enum', 'load_balancer.js'),
   path.join('.', PATH.library, 'enum', 'module.js'),
   // module
   path.join('.', PATH.library, 'module', 'connection.js'),

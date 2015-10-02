@@ -12,7 +12,7 @@ var BaseMQ = module.exports = {};
  */
 BaseMQ.Connection = require('./lib/enum/connection');
 BaseMQ.Heartbeat = require('./lib/enum/heartbeat');
-BaseMQ.LoadBalancer = require('./lib/enum/loadbalancer');
+BaseMQ.LoadBalancer = require('./lib/enum/load_balancer');
 BaseMQ.Module = require('./lib/enum/module');
 
 /**
