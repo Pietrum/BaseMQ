@@ -8,6 +8,7 @@ var PATH = {
   test: 'test'
 };
 var TESTS = [
+  path.join('.', PATH.test, 'dependencies', 'zmq.spec.js'),
   path.join('.', PATH.test, 'basemq.spec.js'),
   path.join('.', PATH.test, 'enum.spec.js'),
   path.join('.', PATH.test, 'role.spec.js'),
