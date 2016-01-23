@@ -26,15 +26,15 @@ describe('[Request - Reply]', function() {
 
     beforeEach(function() {
       client = new bmq.Client();
-      client.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REQ  // connect dealer
+      client.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REQ  // connect dealer
       });
       client.initialize();
 
       worker = new bmq.Worker();
-      worker.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REP, // router
-        socket: bmq.Connection.BIND   // bind
+      worker.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REP, // router
+        socket: bmq.SOCKET.BIND       // bind
       });
       worker.initialize();
     });
@@ -71,15 +71,15 @@ describe('[Request - Reply]', function() {
 
     beforeEach(function() {
       client = new bmq.Client();
-      client.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REQ  // connect dealer
+      client.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REQ  // connect dealer
       });
       client.initialize();
 
       worker = new bmq.Worker();
-      worker.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REP_SYNC, // router
-        socket: bmq.Connection.BIND   // bind
+      worker.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REP_SYNC,  // router
+        socket: bmq.SOCKET.BIND             // bind
       });
       worker.initialize();
     });
@@ -116,15 +116,15 @@ describe('[Request - Reply]', function() {
 
     beforeEach(function() {
       client = new bmq.Client();
-      client.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REQ_SYNC  // connect dealer
+      client.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REQ_SYNC  // connect dealer
       });
       client.initialize();
 
       worker = new bmq.Worker();
-      worker.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REP, // router
-        socket: bmq.Connection.BIND   // bind
+      worker.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REP,  // router
+        socket: bmq.SOCKET.BIND         // bind
       });
       worker.initialize();
     });
@@ -161,15 +161,15 @@ describe('[Request - Reply]', function() {
 
     beforeEach(function() {
       client = new bmq.Client();
-      client.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REQ_SYNC  // connect dealer
+      client.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REQ_SYNC // connect dealer
       });
       client.initialize();
 
       worker = new bmq.Worker();
-      worker.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REP_SYNC, // router
-        socket: bmq.Connection.BIND   // bind
+      worker.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REP_SYNC,  // router
+        socket: bmq.SOCKET.BIND             // bind
       });
       worker.initialize();
     });
@@ -206,15 +206,15 @@ describe('[Request - Reply]', function() {
 
     beforeEach(function() {
       client = new bmq.Client();
-      client.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REQ  // connect dealer
+      client.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REQ  // connect dealer
       });
       client.initialize();
 
       worker = new bmq.Worker();
-      worker.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REQ, // router
-        socket: bmq.Connection.BIND   // bind
+      worker.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REQ, // router
+        socket: bmq.SOCKET.BIND       // bind
       });
       worker.initialize();
     });
@@ -251,15 +251,15 @@ describe('[Request - Reply]', function() {
 
     beforeEach(function() {
       client = new bmq.Client();
-      client.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REP  // connect dealer
+      client.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REP  // connect dealer
       });
       client.initialize();
 
       worker = new bmq.Worker();
-      worker.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REP, // router
-        socket: bmq.Connection.BIND   // bind
+      worker.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REP, // router
+        socket: bmq.SOCKET.BIND       // bind
       });
       worker.initialize();
     });

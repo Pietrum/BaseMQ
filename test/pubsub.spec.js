@@ -17,15 +17,15 @@ describe('[Push - Pull]', function() {
 
   beforeEach(function() {
     client = new bmq.Client();
-    client.use(bmq.Module.CONNECTION, {
-      approach: bmq.Connection.SUB  // connect sub
+    client.use(bmq.MODULE.CONNECTION, {
+      approach: bmq.CONNECTION.SUB  // connect sub
     });
     client.initialize();
 
     worker = new bmq.Worker();
-    worker.use(bmq.Module.CONNECTION, {
-      approach: bmq.Connection.PUB, // pub
-      socket: bmq.Connection.BIND   // bind
+    worker.use(bmq.MODULE.CONNECTION, {
+      approach: bmq.CONNECTION.PUB, // pub
+      socket: bmq.SOCKET.BIND       // bind
     });
     worker.initialize();
   });

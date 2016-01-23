@@ -12,19 +12,27 @@ describe('[BaseMQ]', function() {
   });
 
   it('should expose a Connection enum', function() {
-    expect(bmq.Connection).to.be.a('object');
+    expect(bmq.CONNECTION).to.be.a('object');
   });
 
   it('should expose a Heartbeat enum', function() {
-    expect(bmq.Heartbeat).to.be.a('object');
+    expect(bmq.HEARTBEAT).to.be.a('object');
   });
 
   it('should expose a LoadBalancer enum', function() {
-    expect(bmq.LoadBalancer).to.be.a('object');
+    expect(bmq.LOAD_BALANCER).to.be.a('object');
   });
 
   it('should expose a Module enum', function() {
-    expect(bmq.Module).to.be.a('object');
+    expect(bmq.MODULE).to.be.a('object');
+  });
+
+  it('should expose a Socket enum', function() {
+    expect(bmq.SOCKET).to.be.a('object');
+  });
+
+  it('should expose a Status enum', function() {
+    expect(bmq.STATUS).to.be.a('object');
   });
 
   it('should expose a Client role', function() {

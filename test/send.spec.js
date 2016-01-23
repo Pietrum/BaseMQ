@@ -26,15 +26,15 @@ describe('[Send]', function() {
 
     beforeEach(function() {
       client = new bmq.Client();
-      client.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REQ  // connect dealer
+      client.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REQ  // connect dealer
       });
       client.initialize();
 
       worker = new bmq.Worker();
-      worker.use(bmq.Module.CONNECTION, {
-        approach: bmq.Connection.REP, // router
-        socket: bmq.Connection.BIND   // bind
+      worker.use(bmq.MODULE.CONNECTION, {
+        approach: bmq.CONNECTION.REP, // router
+        socket: bmq.SOCKET.BIND       // bind
       });
       worker.initialize();
     });
