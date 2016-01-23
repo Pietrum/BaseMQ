@@ -10,10 +10,12 @@ var BaseMQ = module.exports = {};
  *
  * @api public
  */
-BaseMQ.Connection = require('./lib/enum/connection');
-BaseMQ.Heartbeat = require('./lib/enum/heartbeat');
-BaseMQ.LoadBalancer = require('./lib/enum/load_balancer');
-BaseMQ.Module = require('./lib/enum/module');
+BaseMQ.CONNECTION = require('./lib/enum/connection');
+BaseMQ.HEARTBEAT = require('./lib/enum/heartbeat');
+BaseMQ.LOAD_BALANCER = require('./lib/enum/load_balancer');
+BaseMQ.MODULE = require('./lib/enum/module');
+BaseMQ.SOCKET = require('./lib/enum/socket');
+BaseMQ.STATUS = require('./lib/enum/status');
 
 /**
  * Roles.
