@@ -1,15 +1,12 @@
-[![npm package](https://img.shields.io/npm/v/basemq.svg?style=flat-square)](https://www.npmjs.org/package/basemq)
-[![tag:?](https://img.shields.io/github/tag/pietrum/basemq.svg?style=flat-square)](https://github.com/Pietrum/BaseMQ)
+## Node.js Microservices Architecture framework based on ZeroMQ
 
-[![Dependency Status](https://david-dm.org/Pietrum/basemq.svg?style=flat-square)](https://david-dm.org/Pietrum/basemq)
-[![devDependency Status](https://david-dm.org/Pietrum/basemq/dev-status.svg?style=flat-square)](https://david-dm.org/Pietrum/basemq#info=devDependencies)
+[![Travis CI](https://travis-ci.org/Pietrum/BaseMQ.svg?branch=master)](https://travis-ci.org/Pietrum/BaseMQ)
+[![Dependency Status](https://david-dm.org/Pietrum/basemq.svg)](https://david-dm.org/Pietrum/basemq)
+[![devDependency Status](https://david-dm.org/Pietrum/basemq/dev-status.svg)](https://david-dm.org/Pietrum/basemq#info=devDependencies)
+[![Code Climate](https://codeclimate.com/repos/573adc0a9adb120cbc007911/badges/547285fff8abd2344c0f/gpa.svg)](https://codeclimate.com/repos/573adc0a9adb120cbc007911/feed)
+[![Test Coverage](https://codeclimate.com/repos/573adc0a9adb120cbc007911/badges/547285fff8abd2344c0f/coverage.svg)](https://codeclimate.com/repos/573adc0a9adb120cbc007911/coverage)
 
-[![code climate](https://img.shields.io/codeclimate/github/Pietrum/basemq.svg?style=flat-square)](https://codeclimate.com/github/Pietrum/BaseMQ)
-[![coverage:?](https://img.shields.io/coveralls/Pietrum/basemq/master.svg?style=flat-square)](https://coveralls.io/r/Pietrum/BaseMQ)
-
-[![Travis CI](https://img.shields.io/travis/Pietrum/BaseMQ.svg?style=flat-square)](https://travis-ci.org/Pietrum/BaseMQ)
-
-Node.js Microservices Architecture framework based on ZeroMQ
+[![NPM](https://nodei.co/npm/basemq.png?downloads=true)](https://nodei.co/npm/basemq/)
 
 # Quick Start
 
