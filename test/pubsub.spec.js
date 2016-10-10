@@ -10,51 +10,47 @@ chai.use(chaiAsPromised);
 
 var expect = require('chai').expect;
 var bmq = require('../');
+var CONNECTION_ESTABLISH_TIMEOUT = 300;
 
-describe('[Push - Pull]', function() {
+describe('[Publisher - Subscriber]', function () {
   var client;
   var worker;
 
-  beforeEach(function() {
-    client = new bmq.Client();
-    client.use(bmq.MODULE.CONNECTION, {
-      approach: bmq.CONNECTION.SUB  // connect sub
-    });
-    client.initialize();
+  beforeEach(function (done) {
+    client = bmq()
+      .use(bmq.MODULE.SOCKET, {
+        type: bmq.SOCKET.SUB
+      })
+      .connect();
 
-    worker = new bmq.Worker();
-    worker.use(bmq.MODULE.CONNECTION, {
-      approach: bmq.CONNECTION.PUB, // pub
-      socket: bmq.SOCKET.BIND       // bind
-    });
-    worker.initialize();
+    worker = bmq()
+      .use(bmq.MODULE.SOCKET, {
+        type: bmq.SOCKET.PUB
+      })
+      .bind();
+
+    // give time for establish connection
+    setTimeout(done, CONNECTION_ESTABLISH_TIMEOUT);
   });
 
-  afterEach(function() {
-    client.removeAllListeners();
-    client.destroy();
-    worker.removeAllListeners();
-    worker.destroy();
+  afterEach(function () {
+    client.socket.disconnect();
+    worker.socket.unbind();
   });
 
-  describe('pub <=> sub', function() {
-
-    it('should be set push <=> pull connection', function() {
-      expect(client._socket.type).to.eq('sub');
-      expect(worker._socket.type).to.eq('pub');
+  describe('pub <=> sub', function () {
+    it('should be set push <=> pull connection', function () {
+      expect(client.socket.zmq.type).to.eq('sub');
+      expect(worker.socket.zmq.type).to.eq('pub');
     });
 
-    it('should receive data from worker', function(done) {
-      client.on('message', function(data) {
+    it('should receive data from worker', function (done) {
+      client.recv(function (data) {
         expect(data).to.eq('pubsubdata');
         done();
       });
 
-      // waiting for client to establish connection
-      setTimeout(function() {
-        worker.send('pubsubdata');
-      }, 1000);
+      worker.send('pubsubdata');
     });
-
   });
 });

@@ -4,22 +4,21 @@
 var bmq = require('../../');
 
 /**
- * Create `Worker` instance.
+ * Create Role instance.
  */
-var worker = new bmq.Worker();
+var role = bmq(bmq.ROLE.WORKER);
 
 /**
- * Using default `Connection` approach.
+ * Using default Socket approach.
  * No need to define the following block.
  */
-worker.use(bmq.Module.CONNECTION, {
-  approach: bmq.Connection.REQ,   // dealer
-  socket: bmq.Connection.CONNECT, // connect
+role.use(bmq.MODULE.SOCKET, {
+  type: bmq.SOCKET.TYPE_ROUTER,
+  link: bmq.SOCKET.LINK_BIND,
   endpoint: 'tcp://127.0.0.1:12345'
 });
 
 /**
- * Initialize.
+ * Create Worker instance.
  */
-worker.initialize();
-
+var worker = role.init(); // jshint ignore:line

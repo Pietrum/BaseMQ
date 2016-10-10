@@ -10,285 +10,287 @@ chai.use(chaiAsPromised);
 
 var expect = require('chai').expect;
 var bmq = require('../');
+var CONNECTION_ESTABLISH_TIMEOUT = 300;
 
-describe('[Request - Reply]', function() {
+describe('[Request - Reply]', function () {
   var client;
   var worker;
 
-  afterEach(function() {
-    client.removeAllListeners();
-    client.destroy();
-    worker.removeAllListeners();
-    worker.destroy();
+  afterEach(function () {
+    client.socket.disconnect();
+    worker.socket.unbind();
   });
 
-  describe('req <=> rep', function() {
+  describe('dealer <=> router', function () {
+    beforeEach(function (done) {
+      client = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.DEALER
+        })
+        .connect();
 
-    beforeEach(function() {
-      client = new bmq.Client();
-      client.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REQ  // connect dealer
-      });
-      client.initialize();
+      worker = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.ROUTER
+        })
+        .bind();
 
-      worker = new bmq.Worker();
-      worker.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REP, // router
-        socket: bmq.SOCKET.BIND       // bind
-      });
-      worker.initialize();
+      // give time for establish connection
+      setTimeout(done, CONNECTION_ESTABLISH_TIMEOUT);
     });
 
-    it('should be set dealer <=> router connection', function() {
-      expect(client._socket.type).to.eq('dealer');
-      expect(worker._socket.type).to.eq('router');
+    it('should be set dealer <=> router connection', function () {
+      expect(client.socket.zmq.type).to.eq('dealer');
+      expect(worker.socket.zmq.type).to.eq('router');
     });
 
-    it('should receive request from client', function(done) {
+    it('should receive request from client', function (done) {
       client.send('request');
 
-      worker.on('message', function(messageId, data) {
+      worker.recv(function (identity, messageId, data) {
         expect(data).to.eq('request');
         done();
       });
     });
 
-    it('should receive reply from worker', function(done) {
+    it('should receive reply from worker', function (done) {
       client.send('request');
-      client.on('message', function(messageId, data) {
+      client.recv(function (messageId, data) {
         expect(data).to.eq('reply');
         done();
       });
 
-      worker.on('message', function(messageId) {
-        worker.send(messageId, 'reply');
+      worker.recv(function (identity, messageId) {
+        worker.send(identity, messageId, 'reply');
       });
     });
-
   });
 
-  describe('req <=> rep_sync', function() {
+  describe.skip('dealer <=> rep', function () {
+    beforeEach(function (done) {
+      client = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.DEALER
+        })
+        .connect();
 
-    beforeEach(function() {
-      client = new bmq.Client();
-      client.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REQ  // connect dealer
-      });
-      client.initialize();
+      worker = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.REP
+        })
+        .bind();
 
-      worker = new bmq.Worker();
-      worker.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REP_SYNC,  // router
-        socket: bmq.SOCKET.BIND             // bind
-      });
-      worker.initialize();
+      // give time for establish connection
+      setTimeout(done, CONNECTION_ESTABLISH_TIMEOUT);
     });
 
-    it('should be set dealer <=> rep connection', function() {
-      expect(client._socket.type).to.eq('dealer');
-      expect(worker._socket.type).to.eq('rep');
+    it('should be set dealer <=> rep connection', function () {
+      expect(client.socket.zmq.type).to.eq('dealer');
+      expect(worker.socket.zmq.type).to.eq('rep');
     });
 
-    it('should receive request from client', function(done) {
+    it('should receive request from client', function (done) {
       client.send('request');
 
-      worker.on('message', function(messageId, data) {
+      worker.recv(function (messageId, data) {
         expect(data).to.eq('request');
         done();
       });
     });
 
-    it('should receive reply from worker', function(done) {
+    it('should receive reply from worker', function (done) {
       client.send('request');
-      client.on('message', function(messageId, data) {
+      client.recv(function (messageId, data) {
         expect(data).to.eq('reply');
         done();
       });
 
-      worker.on('message', function(messageId) {
+      worker.recv(function (messageId) {
         worker.send(messageId, 'reply');
       });
     });
-
   });
 
-  describe('req_sync <=> rep', function() {
+  describe.skip('req <=> router', function () {
+    beforeEach(function (done) {
+      client = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.REQ
+        })
+        .connect();
 
-    beforeEach(function() {
-      client = new bmq.Client();
-      client.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REQ_SYNC  // connect dealer
-      });
-      client.initialize();
+      worker = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.ROUTER
+        })
+        .bind();
 
-      worker = new bmq.Worker();
-      worker.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REP,  // router
-        socket: bmq.SOCKET.BIND         // bind
-      });
-      worker.initialize();
+      // give time for establish connection
+      setTimeout(done, CONNECTION_ESTABLISH_TIMEOUT);
     });
 
-    it('should be set req <=> router connection', function() {
-      expect(client._socket.type).to.eq('req');
-      expect(worker._socket.type).to.eq('router');
+    it('should be set req <=> router connection', function () {
+      expect(client.socket.zmq.type).to.eq('req');
+      expect(worker.socket.zmq.type).to.eq('router');
     });
 
-    it('should receive request from client', function(done) {
+    it('should receive request from client', function (done) {
       client.send('request');
 
-      worker.on('message', function(messageId, data) {
+      worker.recv(function (messageId, data) {
         expect(data).to.eq('request');
         done();
       });
     });
 
-    it('should receive reply from worker', function(done) {
+    it('should receive reply from worker', function (done) {
       client.send('request');
-      client.on('message', function(messageId, data) {
+      client.recv(function (messageId, data) {
         expect(data).to.eq('reply');
         done();
       });
 
-      worker.on('message', function(messageId) {
-        worker.send(messageId, 'reply');
+      worker.recv(function (identity, messageId) {
+        worker.send(identity, messageId, 'reply');
       });
     });
-
   });
 
-  describe('req_sync <=> rep_sync', function() {
+  describe('req <=> rep', function () {
+    beforeEach(function (done) {
+      client = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.REQ
+        })
+        .connect();
 
-    beforeEach(function() {
-      client = new bmq.Client();
-      client.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REQ_SYNC // connect dealer
-      });
-      client.initialize();
+      worker = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.REP
+        })
+        .bind();
 
-      worker = new bmq.Worker();
-      worker.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REP_SYNC,  // router
-        socket: bmq.SOCKET.BIND             // bind
-      });
-      worker.initialize();
+      // give time for establish connection
+      setTimeout(done, CONNECTION_ESTABLISH_TIMEOUT);
     });
 
-    it('should be set req <=> rep connection', function() {
-      expect(client._socket.type).to.eq('req');
-      expect(worker._socket.type).to.eq('rep');
+    it('should be set req <=> rep connection', function () {
+      expect(client.socket.zmq.type).to.eq('req');
+      expect(worker.socket.zmq.type).to.eq('rep');
     });
 
-    it('should receive request from client', function(done) {
+    it('should receive request from client', function (done) {
       client.send('request');
 
-      worker.on('message', function(messageId, data) {
+      worker.recv(function (messageId, data) {
         expect(data).to.eq('request');
         done();
       });
     });
 
-    it('should receive reply from worker', function(done) {
+    it('should receive reply from worker', function (done) {
       client.send('request');
-      client.on('message', function(messageId, data) {
+      client.recv(function (messageId, data) {
         expect(data).to.eq('reply');
         done();
       });
 
-      worker.on('message', function(messageId) {
+      worker.recv(function (messageId) {
         worker.send(messageId, 'reply');
       });
     });
-
   });
 
-  describe('req <=> req', function() {
+  describe('dealer <=> dealer', function () {
+    beforeEach(function (done) {
+      client = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.DEALER
+        })
+        .connect();
 
-    beforeEach(function() {
-      client = new bmq.Client();
-      client.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REQ  // connect dealer
-      });
-      client.initialize();
+      worker = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.DEALER
+        })
+        .bind();
 
-      worker = new bmq.Worker();
-      worker.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REQ, // router
-        socket: bmq.SOCKET.BIND       // bind
-      });
-      worker.initialize();
+      // give time for establish connection
+      setTimeout(done, CONNECTION_ESTABLISH_TIMEOUT);
     });
 
-    it('should be set dealer <=> delear connection', function() {
-      expect(client._socket.type).to.eq('dealer');
-      expect(worker._socket.type).to.eq('dealer');
+    it('should be set dealer <=> delear connection', function () {
+      expect(client.socket.zmq.type).to.eq('dealer');
+      expect(worker.socket.zmq.type).to.eq('dealer');
     });
 
-    it('should receive request from client', function(done) {
+    it('should receive request from client', function (done) {
       client.send('request');
 
-      worker.on('message', function(messageId, data) {
+      worker.recv(function (messageId, data) {
         expect(data).to.eq('request');
         done();
       });
     });
 
-    it('should receive reply from worker', function(done) {
+    it('should receive reply from worker', function (done) {
       client.send('request');
-      client.on('message', function(messageId, data) {
+      client.recv(function (messageId, data) {
         expect(data).to.eq('reply');
         done();
       });
 
-      worker.on('message', function(messageId) {
+      worker.recv(function (messageId) {
         worker.send(messageId, 'reply');
       });
     });
-
   });
 
-  describe.skip('rep <=> rep', function() {
+  describe('router <=> router', function () {
+    beforeEach(function (done) {
+      client = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          uuid: 'client',
+          type: bmq.SOCKET.ROUTER
+        })
+        .connect();
 
-    beforeEach(function() {
-      client = new bmq.Client();
-      client.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REP  // connect dealer
-      });
-      client.initialize();
+      worker = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          uuid: 'server',
+          type: bmq.SOCKET.ROUTER
+        })
+        .bind();
 
-      worker = new bmq.Worker();
-      worker.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REP, // router
-        socket: bmq.SOCKET.BIND       // bind
-      });
-      worker.initialize();
+      // give time for establish connection
+      setTimeout(done, CONNECTION_ESTABLISH_TIMEOUT);
     });
 
-    it('should be set router <=> router connection', function() {
-      expect(client._socket.type).to.eq('router');
-      expect(worker._socket.type).to.eq('router');
+    it('should be set router <=> router connection', function () {
+      expect(client.socket.zmq.type).to.eq('router');
+      expect(worker.socket.zmq.type).to.eq('router');
     });
 
-    it('should receive request from client', function(done) {
-      client.send('request');
+    it('should receive request from client', function (done) {
+      client.send('server', 'request');
 
-      worker.on('message', function(messageId, data) {
+      worker.recv(function (identity, messageId, data) {
         expect(data).to.eq('request');
         done();
       });
     });
 
-    it('should receive reply from worker', function(done) {
-      client.send('request');
-      client.on('message', function(messageId, data) {
+    it('should receive reply from worker', function (done) {
+      client.send('server', 'request');
+      client.recv(function (identity, messageId, data) {
+        expect(identity).to.eq('server');
         expect(data).to.eq('reply');
         done();
       });
 
-      worker.on('message', function(messageId) {
-        worker.send(messageId, 'reply');
+      worker.recv(function (identity, messageId) {
+        worker.send(identity, messageId, 'reply');
       });
     });
-
   });
 });

@@ -10,39 +10,39 @@ chai.use(chaiAsPromised);
 
 var expect = require('chai').expect;
 var bmq = require('../');
+var CONNECTION_ESTABLISH_TIMEOUT = 300;
 
-describe('[Send]', function() {
+describe('[Send]', function () {
   var client;
   var worker;
 
-  afterEach(function() {
-    client.removeAllListeners();
-    client.destroy();
-    worker.removeAllListeners();
-    worker.destroy();
+  afterEach(function () {
+    client.socket.disconnect();
+    worker.socket.unbind();
   });
 
-  describe('data frame', function() {
+  describe('data frame', function () {
+    beforeEach(function (done) {
+      client = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.DEALER
+        })
+        .connect();
 
-    beforeEach(function() {
-      client = new bmq.Client();
-      client.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REQ  // connect dealer
-      });
-      client.initialize();
+      worker = bmq()
+        .use(bmq.MODULE.SOCKET, {
+          type: bmq.SOCKET.DEALER
+        })
+        .bind();
 
-      worker = new bmq.Worker();
-      worker.use(bmq.MODULE.CONNECTION, {
-        approach: bmq.CONNECTION.REP, // router
-        socket: bmq.SOCKET.BIND       // bind
-      });
-      worker.initialize();
+      // give time for establish connection
+      setTimeout(done, CONNECTION_ESTABLISH_TIMEOUT);
     });
 
-    it('should recive string data', function(done) {
+    it('should recive string data', function (done) {
       client.send('string data');
 
-      worker.on('message', function(messageId, data) {
+      worker.recv(function (messageId, data) {
         expect(data).to.be.a('string');
         expect(data).to.eq('string data');
         expect(data.length).to.eq(11);
@@ -50,23 +50,23 @@ describe('[Send]', function() {
       });
     });
 
-    it('should recive number data', function(done) {
+    it('should recive number data', function (done) {
       client.send(123);
 
-      worker.on('message', function(messageId, data) {
+      worker.recv(function (messageId, data) {
         expect(data).to.be.a('number');
         expect(data).to.eq(123);
         done();
       });
     });
 
-    it('should recive json data..', function(done) {
+    it('should recive json data..', function (done) {
       client.send({
         foo: 'fooo',
         bar: 123
       });
 
-      worker.on('message', function(messageId, data) {
+      worker.recv(function (messageId, data) {
         expect(data).to.be.a('object');
         expect(data).to.have.property('foo').and.eq('fooo');
         expect(data).to.have.property('bar').and.eq(123);

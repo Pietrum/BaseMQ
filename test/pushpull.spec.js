@@ -10,48 +10,47 @@ chai.use(chaiAsPromised);
 
 var expect = require('chai').expect;
 var bmq = require('../');
+var CONNECTION_ESTABLISH_TIMEOUT = 300;
 
-describe('[Push - Pull]', function() {
+describe('[Push - Pull]', function () {
   var client;
   var worker;
 
-  beforeEach(function() {
-    client = new bmq.Client();
-    client.use(bmq.MODULE.CONNECTION, {
-      approach: bmq.CONNECTION.PUSH  // connect push
-    });
-    client.initialize();
+  beforeEach(function (done) {
+    client = bmq()
+      .use(bmq.MODULE.SOCKET, {
+        type: bmq.SOCKET.PUSH
+      })
+      .connect();
 
-    worker = new bmq.Worker();
-    worker.use(bmq.MODULE.CONNECTION, {
-      approach: bmq.CONNECTION.PULL,  // pull
-      socket: bmq.SOCKET.BIND         // bind
-    });
-    worker.initialize();
+    worker = bmq()
+      .use(bmq.MODULE.SOCKET, {
+        type: bmq.SOCKET.PULL
+      })
+      .bind();
+
+    // give time for establish connection
+    setTimeout(done, CONNECTION_ESTABLISH_TIMEOUT);
   });
 
-  afterEach(function() {
-    client.removeAllListeners();
-    client.destroy();
-    worker.removeAllListeners();
-    worker.destroy();
+  afterEach(function () {
+    client.socket.disconnect();
+    worker.socket.unbind();
   });
 
-  describe('push <=> pull', function() {
-
-    it('should be set push <=> pull connection', function() {
-      expect(client._socket.type).to.eq('push');
-      expect(worker._socket.type).to.eq('pull');
+  describe('push <=> pull', function () {
+    it('should be set push <=> pull connection', function () {
+      expect(client.socket.zmq.type).to.eq('push');
+      expect(worker.socket.zmq.type).to.eq('pull');
     });
 
-    it('should receive request from client', function(done) {
+    it('should receive request from client', function (done) {
       client.send('request');
 
-      worker.on('message', function(data) {
+      worker.recv(function (data) {
         expect(data).to.eq('request');
         done();
       });
     });
-
   });
 });
