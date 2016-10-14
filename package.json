@@ -1,5 +1,5 @@
 {
-  "name": "BaseMQ",
+  "name": "basemq",
   "version": "0.2.0-alpha",
   "description": "Node.js Microservices Architecture framework based on ZeroMQ",
   "main": "index.js",
