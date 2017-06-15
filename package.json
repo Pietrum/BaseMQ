@@ -31,9 +31,9 @@
   "dependencies": {
     "debug": "^2.2.0",
     "lodash": "^4.0.0",
-    "node-uuid": "^1.4.7",
+    "uuid": "^3.0.0",
     "util": "^0.10.3",
-    "zmq": "^2.14.0"
+    "zmq": "^2.15.3"
   },
   "devDependencies": {
     "chai": "^3.4.1",
@@ -42,7 +42,7 @@
     "gulp-jscs": "^4.0.0",
     "gulp-jshint": "^2.0.0",
     "gulp-load-plugins": "^1.2.0",
-    "gulp-mocha": "^3.0.0",
+    "gulp-mocha": "^4.3.0",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0"
   }
