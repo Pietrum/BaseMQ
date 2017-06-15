@@ -10,8 +10,6 @@ var PATH = {
   test: 'test'
 };
 var TESTS = [
-  // dependencies
-  path.join('.', PATH.test, 'dependencies', 'zmq.spec.js'),
   // enum
   path.join('.', PATH.test, 'enum.spec.js'),
   // module
