@@ -31,19 +31,17 @@
   "dependencies": {
     "debug": "^2.2.0",
     "lodash": "^4.0.0",
-    "uuid": "^3.0.0",
     "util": "^0.10.3",
+    "uuid": "^3.0.0",
     "zmq": "^2.15.3"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
-    "chai-as-promised": "^6.0.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0",
     "gulp": "^3.9.0",
-    "gulp-jscs": "^4.0.0",
-    "gulp-jshint": "^2.0.0",
+    "gulp-eslint": "^4.0.0",
+    "gulp-jest": "^2.0.0",
     "gulp-load-plugins": "^1.2.0",
-    "gulp-mocha": "^4.3.0",
-    "jshint": "^2.9.2",
-    "jshint-stylish": "^2.2.0"
+    "jest-cli": "^20.0.4"
   }
 }
