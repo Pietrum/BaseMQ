@@ -1,10 +1,12 @@
 {
   "name": "basemq",
-  "version": "0.2.0-alpha",
+  "version": "0.2.0",
   "description": "Node.js Microservices Architecture framework based on ZeroMQ",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/gulp test"
+    "lint": "eslint examples/ lib/ index.js",
+    "jest": "jest --verbose",
+    "test": "npm run lint && npm run jest"
   },
   "repository": {
     "type": "git",
@@ -29,19 +31,15 @@
     "microservices"
   ],
   "dependencies": {
-    "debug": "^2.2.0",
-    "lodash": "^4.0.0",
-    "util": "^0.10.3",
-    "uuid": "^3.0.0",
-    "zmq": "^2.15.3"
+    "debug": "^4.1.1",
+    "lodash": "^4.17.15",
+    "uuid": "^3.3.3",
+    "zeromq": "^5.1.0"
   },
   "devDependencies": {
-    "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.3.0",
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^4.0.0",
-    "gulp-jest": "^2.0.0",
-    "gulp-load-plugins": "^1.2.0",
-    "jest-cli": "^20.0.4"
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.9.0"
   }
 }
